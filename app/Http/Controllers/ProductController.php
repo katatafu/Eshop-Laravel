@@ -38,13 +38,13 @@ class ProductController extends Controller
      * Display the specified resource.
      */
       public function show($id)
-    {
-        // Načte produkt podle ID
-        $product = Product::findOrFail($id);
+            {
+                // Načte produkt podle ID
+                $product = Product::findOrFail($id);
 
-        // Předá produkt do view
-        return view('products.show', compact('product'));
-    }
+                // Předá produkt do view
+                return view('products.show', compact('product'));
+            }
     public function search(Request $request)
         {
             $query = $request->input('query');

@@ -3,6 +3,7 @@
 
 @section('content')
     <div class="container py-10 mx-auto">
+        <div class="h-16"></div>
         <h1 class="text-3xl font-semibold text-center mb-8 text-white">Naše Produkty</h1>
 
         <!-- Inline Style pro Grid -->
