@@ -39,11 +39,17 @@ class ProductController extends Controller
      */
       public function show($id)
             {
-                // Načte produkt podle ID
-                $product = Product::findOrFail($id);
+                   $product = Product::findOrFail($id);
+
+                // Get related products (you can adjust the logic to suit your needs)
+                    $relatedProducts = Product::where('id', '!=', $product->id)
+                    ->inRandomOrder()
+                    ->take(10)
+                    ->get();
+
 
                 // Předá produkt do view
-                return view('products.show', compact('product'));
+                return view('products.show', compact('product','relatedProducts'));
             }
     public function search(Request $request)
         {
