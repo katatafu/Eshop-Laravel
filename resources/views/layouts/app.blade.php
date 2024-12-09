@@ -24,7 +24,7 @@
             padding: 0;
             height: 100%;
             font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            overflow: auto; /* Allow scrolling */
         }
 
         /* Black overlay and transition */
@@ -53,7 +53,8 @@
             opacity: 0;  /* Start hidden */
             z-index: 1001;  /* Above the black overlay */
         }
-       .transition-sub {
+
+        .transition-sub {
             font-size: 3rem;
             font-weight: bold;
             color: #fff;
@@ -71,15 +72,20 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+
+        /* When the transition ends, content becomes visible */
+        .content-visible {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!-- Page transition overlay with "Barvio" text -->
+     @if(session('page_transition_done') === null)
         <div class="page-transition">
             <div class="transition-text">Barvio</div>
-                        <div class="transition-sub">Ecologic colors without oil</div>
-
+            <div class="transition-sub">Ecologic colors without oil</div>
         </div>
 
         @include('layouts.navigation')
@@ -93,50 +99,62 @@
     <!-- Page Transition Script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const pageTransition = document.querySelector('.page-transition');
-            const contentWrapper = document.querySelector('.content-wrapper');
-            const transitionText = document.querySelector('.transition-text');
-            const transitionSub = document.querySelector('.transition-sub');
+            // Check if the transition has already been shown
+            const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
 
-            // GSAP animation for page transition
-            const tl = gsap.timeline({
-                onComplete: () => {
-                    contentWrapper.style.opacity = 1; // Show the content after transition
-                }
-            });
+            // If it's the user's first visit, show the page transition
+            if (!hasVisitedBefore) {
+                const pageTransition = document.querySelector('.page-transition');
+                const contentWrapper = document.querySelector('.content-wrapper');
+                const transitionText = document.querySelector('.transition-text');
+                const transitionSub = document.querySelector('.transition-sub');
 
-            // Transition animation for the black overlay
-            tl.to(pageTransition, { scaleX: 1, duration: 1.5, transformOrigin: 'left' })  // Expand black overlay
+                // GSAP animation for page transition
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        contentWrapper.classList.add('content-visible'); // Make content visible after transition
+                        document.body.style.overflow = 'auto';  // Re-enable scrolling after transition
+                    }
+                });
 
-            // Animate the "Barvio" text within the black overlay
-            .to(transitionText, {
-                opacity: 1, // Show text
-                y: -50, // Move it slightly up
-                duration: 1.5,
-                ease: "power3.out",
-            })   .to(transitionSub, {
-                opacity: 1, // Show text
-                y: -50, // Move it slightly up
-                duration: 1.5,
+                // Transition animation for the black overlay
+                tl.to(pageTransition, { scaleX: 1, duration: 1.5, transformOrigin: 'left' })  // Expand black overlay
 
-                ease: "power3.out",
-            }) 
-            .to(transitionText, {
-                opacity: 0, // Show text
-                y: -50, // Move it slightly up
-                duration: 0.5,
-                ease: "power3.out",
-            })  
-            .to(transitionSub, {
-                opacity: 0, // Show text
-                y: -50, // Move it slightly up
-                duration:0.5,
-                ease: "power3.in",
-            })
-         
-            .to(pageTransition, { scaleX: 0, duration: 1.5, transformOrigin: 'right', });  // Shrink black overlay
-          
+                // Animate the "Barvio" text within the black overlay
+                .to(transitionText, {
+                    opacity: 1, // Show text
+                    y: -50, // Move it slightly up
+                    duration: 1.5,
+                    ease: "power3.out",
+                })   
+                .to(transitionSub, {
+                    opacity: 1, // Show text
+                    y: -50, // Move it slightly up
+                    duration: 1.5,
+                    ease: "power3.out",
+                }) 
+                .to(transitionText, {
+                    opacity: 0, // Hide text
+                    y: -50, // Move it slightly up
+                    duration: 0.5,
+                    ease: "power3.out",
+                })  
+                .to(transitionSub, {
+                    opacity: 0, // Hide text
+                    y: -50, // Move it slightly up
+                    duration: 0.5,
+                    ease: "power3.in",
+                })
+                .to(pageTransition, { scaleX: 0, duration: 1.5, transformOrigin: 'right' });  // Shrink black overlay
+
+                // Mark as visited to avoid showing the transition on subsequent visits
+                localStorage.setItem('hasVisitedBefore', 'true');
+            } else {
+                // If the user has already visited, directly show the content
+                document.querySelector('.content-wrapper').classList.add('content-visible');
+                document.body.style.overflow = 'auto';  // Ensure scrolling is enabled
+            }
         });
     </script>
 </body>
-</htm
+</html>

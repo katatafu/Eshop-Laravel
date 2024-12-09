@@ -10,7 +10,6 @@
         </div>
     </div>
 
-    <!-- Why Choose Us Section -->
     <div class="py-10 text-center bg-gray-100">
     <h2 class="text-3xl font-semibold">Proč nakupovat u nás?</h2>
     <p class="mt-4 text-lg text-gray-700">Nabízíme nejlepší produkty za nejlepší ceny!</p>
