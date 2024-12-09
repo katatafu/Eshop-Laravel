@@ -12,67 +12,30 @@
 
     <!-- Why Choose Us Section -->
     <div class="py-10 text-center bg-gray-100">
-        <h2 class="text-3xl font-semibold">Proč nakupovat u nás?</h2>
-        <p class="mt-4 text-lg text-gray-700">Nabízíme nejlepší produkty za nejlepší ceny!</p>
-        <div class="mt-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <div class="bg-white shadow-md rounded-lg p-6 max-w-xs mx-auto">
-                <h3 class="text-lg font-bold">Rychlá Doprava</h3>
-                <p class="mt-2">Zaručujeme rychlé dodání vašich objednávek.</p>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-6 max-w-xs mx-auto">
-                <h3 class="text-lg font-bold">Kvalitní Produkty</h3>
-                <p class="mt-2">Naše produkty procházejí důkladným výběrem kvality.</p>
-            </div>
-            <div class="bg-white shadow-md rounded-lg p-6 max-w-xs mx-auto">
-                <h3 class="text-lg font-bold">Zákaznická Podpora</h3>
-                <p class="mt-2">Jsme tu pro vás, abychom zodpověděli všechny vaše dotazy.</p>
-            </div>
+    <h2 class="text-3xl font-semibold">Proč nakupovat u nás?</h2>
+    <p class="mt-4 text-lg text-gray-700">Nabízíme nejlepší produkty za nejlepší ceny!</p>
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto px-6">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-lg font-bold">Rychlá Doprava</h3>
+            <p class="mt-2 text-gray-600">Zaručujeme rychlé dodání vašich objednávek.</p>
         </div>
-    </div>
-
-   <!-- Products Horizontal Scroll Section -->
-<div class="py-10">
-    <h2 class="text-3xl font-semibold text-center">Naše Produkty</h2>
-    <div class="overflow-x-auto mt-6">
-        <div class="flex space-x-4">
-            @foreach($products as $product)
-                <div class="flex-shrink-0 w-64">
-                    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="object-cover w-full h-48">
-                        <div class="p-4">
-                            <h3 class="text-lg font-bold">{{ $product->name }}</h3>
-                            <p class="mt-2 text-gray-600">{{ $product->description }}</p>
-                            <p class="mt-2 font-bold">{{ number_format($product->price, 2) }} Kč</p>
-                            <button class="mt-4 bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition duration-200">Koupit</button>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-lg font-bold">Kvalitní Produkty</h3>
+            <p class="mt-2 text-gray-600">Naše produkty procházejí důkladným výběrem kvality.</p>
+        </div>
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-lg font-bold">Zákaznická Podpora</h3>
+            <p class="mt-2 text-gray-600">Jsme tu pro vás, abychom zodpověděli všechny vaše dotazy.</p>
         </div>
     </div>
 </div>
 
+    <!-- Horizontal slider -->
+    @include( 'components.product-slider')
 
     <!-- Contact Form Section -->
-    <div class="py-10">
-        <h2 class="text-3xl font-semibold text-center">Kontaktní formulář</h2>
-        <form class="max-w-md mx-auto mt-4 p-6 bg-white shadow-md rounded-lg" action="#" method="POST">
-            @csrf
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700">Jméno</label>
-                <input type="text" id="name" name="name" class="border border-gray-300 rounded-md w-full p-2" required>
-            </div>
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
-                <input type="email" id="email" name="email" class="border border-gray-300 rounded-md w-full p-2" required>
-            </div>
-            <div class="mb-4">
-                <label for="message" class="block text-sm font-medium text-gray-700">Zpráva</label>
-                <textarea id="message" name="message" class="border border-gray-300 rounded-md w-full p-2" required></textarea>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 transition duration-200">Odeslat</button>
-        </form>
-    </div>
+    @include('components.contact-form')
+
 @endsection
 
 @push('scripts')
