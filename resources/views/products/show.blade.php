@@ -38,20 +38,10 @@
                 </div>
             </div>
         </div>
+        <div class="p-8 m-8">
+        <x-infinite_slider :products="$relatedProducts" />
 
-        <!-- Product Slider for Related Products -->
-        <div class="mt-16">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6">You may also like</h2>
-            <div class="flex overflow-x-auto space-x-4 pb-6">
-                @foreach($relatedProducts as $related)
-                    <div class="min-w-[200px] bg-white shadow-md rounded-lg p-4">
-                        <img src="https://via.placeholder.com/200" alt="{{ $related->name }}" class="w-full h-48 object-cover rounded-lg mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800">{{ $related->name }}</h3>
-                        <p class="text-lg text-gray-600">{{ $related->price }}</p>
-                        <a href="{{ route('products.show', $related->id) }}" class="text-blue-500 hover:text-blue-600">View Product</a>
-                    </div>
-                @endforeach
-            </div>
+        </div>
         </div>
     </div>
 @endsection

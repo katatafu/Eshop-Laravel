@@ -82,7 +82,6 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!-- Page transition overlay with "Barvio" text -->
-     @if(session('page_transition_done') === null)
         <div class="page-transition">
             <div class="transition-text">Barvio</div>
             <div class="transition-sub">Ecologic colors without oil</div>
