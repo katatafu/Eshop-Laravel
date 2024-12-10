@@ -1,5 +1,5 @@
 <div class="py-10">
-        <h2 class="text-3xl font-semibold text-center">Kontaktní formulář</h2>
+        <h2 class="text-3xl font-semibold  text-white  text-center">Contact Form</h2>
         <form class="max-w-md mx-auto mt-4 p-6 bg-white shadow-md rounded-lg" action="#" method="POST">
             @csrf
             <div class="mb-4">

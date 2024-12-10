@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-10 mx-auto">
         <div class="h-20"></div>
-        <h1 class="text-3xl font-semibold text-center text-white ">Contact us</h1>
+        <h1 class="text-3xl font-semibold text-center text-white ">Do you have some questions? </h1>
 
         <!-- Inline Style pro Grid -->
         <style>

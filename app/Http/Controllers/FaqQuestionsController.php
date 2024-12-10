@@ -12,7 +12,7 @@ class FaqQuestionsController extends Controller
      */
     public function index()
     {
-        return view('questions.index');
+        return view('faq.index');
     }
 
     /**

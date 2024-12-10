@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqQuestionsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/faq', [FaqQuestionsController::class, 'index'])->name('faq.index');
 
 
 Route::get('/dashboard', function () {

@@ -79,7 +79,7 @@
         }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased  h-screen">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         <!-- Page transition overlay with "Barvio" text -->
         <div class="page-transition">
@@ -92,7 +92,9 @@
         <main class="content-wrapper">
             @yield('content')
         </main>
-        @include('components.footer')
+        <div class="fixed bottom-0 w-full">
+             @include('components.footer')
+        </div>
     </div>
 
     <!-- Page Transition Script -->
