@@ -10,6 +10,6 @@
           
         </style>
 
-    @include(view: 'components.contact-form')
+    @include( 'components.contact-form')
     </div>
 @endsection
