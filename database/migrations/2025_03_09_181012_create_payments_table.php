@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('discount', 8, 2)->nullable();
-            $table->string('email');
-            $table->string('phone_number')->nullable();
-            $table->string('address')->nullable();
+            $table->string('transaction_id');
+            $table->decimal('amount', 10, 2);
+            $table->string('status'); // Např. 'completed', 'pending'
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('payments');
     }
 };
